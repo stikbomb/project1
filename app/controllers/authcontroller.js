@@ -17,7 +17,11 @@ exports.dashboard = function(req, res) {
     res.render('dashboard');
 
 
+}
 
+exports.admin = function(req, res) {
+
+    res.render('admin');
 }
 
 exports.logout = function(req, res) {

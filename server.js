@@ -22,12 +22,18 @@ app.get('/', function(req, res) {
     res.send('Welcome to Passport with Sequelize');
 
 });
+var port;
+function randomInteger(min, max) {
+    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    rand = Math.round(rand);
+    port = rand;
+    return rand;
+}
 
-
-app.listen(5024, function(err) {
+app.listen(randomInteger(5000, 10000), function(err) {
 
     if (!err)
-        console.log("Site is live");
+        console.log("Site is live on " + port);
     else console.log(err)
 
 });
@@ -58,3 +64,38 @@ app.engine('hbs', exphbs({
     extname: '.hbs'
 }));
 app.set('view engine', '.hbs');
+
+// var express    = require('express');
+// var app        = express();
+// var mysql      = require('mysql');
+// var bodyParser = require('body-parser');
+//
+//
+//
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: false}));
+// //app.use(express.json());
+// //app.use(express.urlencoded());
+// //app.use(app.router);
+// app.use(express.static('public'));
+//
+
+// var connection = mysql.createConnection({
+//
+//     host     : 'localhost',
+//     user     : 'root',
+//     password : '128500',
+//     database : 'project1'
+//
+// });
+//
+// connection.connect();
+//
+// app.post('/sendItem', function(req, res){
+//     var content=req.body.admin;
+//     connection.query("INSERT INTO items (content) VALUES ", content, function(err, result){
+//         if(err) throw err;
+//         console.log("1 record inserted");
+//     });
+//     res.send(content);
+// });
