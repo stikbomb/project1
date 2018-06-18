@@ -12,15 +12,15 @@
 </head>
 <body>
 <form id="signup" name="signup" method="post" action="/signup">
-    <label for="email">Email Address</label>
-    <input class="text" name="email" type="email" />
-    <label for="firstname">Firstname</label>
-    <input name="firstname" type="text" />
-    <label for="lastname">Lastname</label>
-    <input name="lastname" type="text" />
-    <label for="password">Password</label>
-    <input name="password" type="password" />
-    <input class="btn" type="submit" value="Sign Up" />
+    <label class="sr-only" for="email">Email Address</label>
+    <input class="text" name="email" type="email" placeholder="e-mail" />
+    <label class="sr-only" for="firstname">Firstname</label>
+    <input name="firstname" type="text" placeholder="First name" />
+    <label class="sr-only" for="lastname">Lastname</label>
+    <input name="lastname" type="text" placeholder="Last name"/>
+    <label class="sr-only" for="password">Password</label>
+    <input name="password" type="password" placeholder="password"/>
+    <input class="btn btn-primary mb-2" type="submit" value="Sign Up" />
 </form>
 
 <!-- Optional JavaScript -->

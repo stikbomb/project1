@@ -1,5 +1,6 @@
 var authController = require('../controllers/authcontroller.js');
 var mysql      = require('mysql');
+var Handlebars = require('handlebars')
 
 
 
@@ -22,7 +23,30 @@ module.exports = function(app, passport) {
 
     app.get('/admin', isLoggedIn, authController.admin);
 
-    app.get('/dashboard', isLoggedIn, authController.dashboard);
+    // app.get('/dashboard', isLoggedIn, authController.dashboard);
+
+    app.get('/dashboard', function(req, res) {
+        var connection = mysql.createConnection({
+
+            host     : 'localhost',
+            user     : 'root',
+            password : '128500',
+            database : 'project1'
+
+        });
+
+        connection.connect();
+        connection.query("SELECT * FROM `contents`",  function(err, rows) {
+            res.render('dashboard', {rows : rows});
+
+        });
+        // Get the text for the Handlebars template from the script element.
+        // var source = document.getElementById('resultTemp').innerHTML;
+        // var template = Handlebars.compile(source);
+        // var context = {rows : rows};
+        // var html = template(context);
+        // document.getElementById('result').innerHTML = html;
+    });
 
 
 

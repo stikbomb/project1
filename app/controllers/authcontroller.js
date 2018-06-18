@@ -1,5 +1,5 @@
 var exports = module.exports = {}
-
+var mysql      = require('mysql');
 exports.signup = function(req, res) {
 
     res.render('signup');
@@ -13,8 +13,20 @@ exports.signin = function(req, res) {
 }
 
 exports.dashboard = function(req, res) {
+    var connection = mysql.createConnection({
 
-    res.render('dashboard');
+        host     : 'localhost',
+        user     : 'root',
+        password : '128500',
+        database : 'project1'
+
+    });
+
+    connection.connect();
+
+    connection.query("SELECT * FROM `contents`",  function(err, result) {
+        res.render('dashboard', { object: result });
+    });
 
 
 }
