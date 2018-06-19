@@ -176,40 +176,6 @@ module.exports = function(passport,user){
         }
     ));
 
-    // passport.use('local-sendItem', new LocalStrategy(
-    //
-    //     {
-    //         content : 'content',
-    //         passReqToCallback : true // allows us to pass back the entire request to the callback
-    //     },
-    //
-    //     function(req, content, done){
-    //
-    //
-    //
-    //         var data =
-    //             { content:content
-    //             };
-    //
-    //
-    //         Item.create(data).then(function(newItem,created){
-    //             if(!newItem){
-    //                 return done(null,false);
-    //             }
-    //
-    //             if(newItem){
-    //                 return done(null,newItem);
-    //
-    //             }
-    //
-    //
-    //         })
-    //
-    //
-    //
-    //     }
-    // ));
-
 
 
 }

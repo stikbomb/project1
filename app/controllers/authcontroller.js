@@ -1,5 +1,6 @@
 var exports = module.exports = {}
 var mysql      = require('mysql');
+
 exports.signup = function(req, res) {
 
     res.render('signup');
@@ -36,7 +37,12 @@ exports.admin = function(req, res) {
     res.render('admin');
 }
 
-exports.logout = function(req, res) {
+exports.slug = function(req, res) {
+
+    res.render('slug');
+}
+
+exports.logout = function(req, res, ) {
 
     req.session.destroy(function(err) {
 

@@ -1,7 +1,5 @@
 var authController = require('../controllers/authcontroller.js');
 var mysql      = require('mysql');
-var Handlebars = require('handlebars')
-
 
 
 module.exports = function(app, passport) {
@@ -18,36 +16,30 @@ module.exports = function(app, passport) {
 
             failureRedirect: '/signup'
         }
-
     ));
 
     app.get('/admin', isLoggedIn, authController.admin);
 
     // app.get('/dashboard', isLoggedIn, authController.dashboard);
 
-    app.get('/dashboard', function(req, res) {
+    app.get('/dashboard', function (req, res) {
         var connection = mysql.createConnection({
 
-            host     : 'localhost',
-            user     : 'root',
-            password : '128500',
-            database : 'project1'
+            host: 'localhost',
+            user: 'root',
+            password: '128500',
+            database: 'project1'
 
         });
 
         connection.connect();
-        connection.query("SELECT * FROM `contents`",  function(err, rows) {
-            res.render('dashboard', {rows : rows});
+        connection.query("SELECT * FROM `contents`", function (err, rows) {
+            console.log(rows);
+            res.render('dashboard', {rows: rows});
 
         });
-        // Get the text for the Handlebars template from the script element.
-        // var source = document.getElementById('resultTemp').innerHTML;
-        // var template = Handlebars.compile(source);
-        // var context = {rows : rows};
-        // var html = template(context);
-        // document.getElementById('result').innerHTML = html;
-    });
 
+    });
 
 
     app.get('/logout', authController.logout);
@@ -57,26 +49,29 @@ module.exports = function(app, passport) {
 
             failureRedirect: '/signin'
         }
-
     ));
 
-    app.post('/sendItem', function(req, res){
+    app.post('/sendItem', function (req, res) {
         // app.use(bodyParser.json());
         // app.use(bodyParser.urlencoded({extended: false}));
         var content = req.body.content;
+        var title = req.body.title;
+        var slug = req.body.slug;
         var connection = mysql.createConnection({
 
-            host     : 'localhost',
-            user     : 'root',
-            password : '128500',
-            database : 'project1'
+            host: 'localhost',
+            user: 'root',
+            password: '128500',
+            database: 'project1'
 
         });
 
         connection.connect();
-        connection.query("INSERT INTO contents (content) VALUES (?)", content.toString(), function(err, result){
-            if(err) throw err;
-            console.log("1 record inserted");
+        var sql = "INSERT INTO contents (content, title, slug) VALUES ?";
+        var values = [[content.toString(), title.toString(), slug.toString()]];
+        connection.query(sql, [values], function (err, result) {
+            if (err) throw err;
+            console.log('Item was added!' + result.affectedRows)
         });
         res.send(content);
     });
@@ -86,7 +81,6 @@ module.exports = function(app, passport) {
 
             failureRedirect: '/signin'
         }
-
     ));
 
 
@@ -100,4 +94,35 @@ module.exports = function(app, passport) {
 
     }
 
+
+    app.get('/element/:slug', function (req, res) {
+        var index = req.params.slug;
+        var connection = mysql.createConnection({
+
+            host: 'localhost',
+            user: 'root',
+            password: '128500',
+            database: 'project1'
+
+        });
+
+        connection.connect();
+        var sql = "SELECT * FROM `contents` where (slug='" + index + "')";
+        console.log(sql);
+        connection.query(sql, function (err, fields) {
+
+
+            var string = JSON.stringify(fields);
+
+            var json =  JSON.parse(string);
+            console.log(string);
+            console.log(json);
+
+
+            res.render('slug', {json});
+
+
+        });
+    });
 }
+

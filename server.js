@@ -1,10 +1,11 @@
 var express = require('express');
 var app = express();
-var passport   = require('passport')
-var session    = require('express-session')
-var bodyParser = require('body-parser')
+var passport   = require('passport');
+var session    = require('express-session');
+var bodyParser = require('body-parser');
 var env = require('dotenv').load();
-var exphbs = require('express-handlebars')
+var exphbs = require('express-handlebars');
+var mysql      = require('mysql');
 
 //For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +25,7 @@ app.get('/', function(req, res) {
 });
 var port;
 function randomInteger(min, max) {
-    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    var rand = min - 0.5 + Math.random() * (max - min + 1);
     rand = Math.round(rand);
     port = rand;
     return rand;
@@ -65,37 +66,3 @@ app.engine('hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
-// var express    = require('express');
-// var app        = express();
-// var mysql      = require('mysql');
-// var bodyParser = require('body-parser');
-//
-//
-//
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
-// //app.use(express.json());
-// //app.use(express.urlencoded());
-// //app.use(app.router);
-// app.use(express.static('public'));
-//
-
-// var connection = mysql.createConnection({
-//
-//     host     : 'localhost',
-//     user     : 'root',
-//     password : '128500',
-//     database : 'project1'
-//
-// });
-//
-// connection.connect();
-//
-// app.post('/sendItem', function(req, res){
-//     var content=req.body.admin;
-//     connection.query("INSERT INTO items (content) VALUES ", content, function(err, result){
-//         if(err) throw err;
-//         console.log("1 record inserted");
-//     });
-//     res.send(content);
-// });
