@@ -110,10 +110,13 @@ module.exports = function(app, passport) {
 
             return next();
 
-        res.redirect('/signin');
+        res.redirect('/404');
 
     }
 
+    app.get('/404', function(res, req) {
+        req.render('./404');
+    });
 
     app.get('/articles/:slug', function (req, res) {
         var index = req.params.slug;
