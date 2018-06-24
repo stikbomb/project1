@@ -4,6 +4,7 @@ var pug = require('pug');
 
 var db = require('../db.json');
 
+var titleEdit;
 
 module.exports = function(app, passport) {
 
@@ -143,5 +144,110 @@ module.exports = function(app, passport) {
 
         });
     });
+
+    app.get('/admin/articles/:slug', isLoggedIn, function (req, res) {
+        var index = req.params.slug;
+        var connection = mysql.createConnection({
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
+
+        });
+
+        connection.connect();
+        var sql = "SELECT * FROM `contents` where (slug='" + index + "')";
+        console.log(sql);
+        connection.query(sql, function (err, fields) {
+
+
+            var strng = JSON.stringify(fields);
+
+            var json =  JSON.parse(strng);
+            console.log(strng);
+            console.log(json);
+            console.log(json[0].title);
+
+
+            res.render('./admin/slug', {json});
+
+
+        });
+    });
+
+    app.post('/admin/articles/delete/:slug', function (req, res) {
+
+
+        var slug = req.params.slug;
+        var connection = mysql.createConnection({
+
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
+
+        });
+
+        connection.connect();
+        var sql = "DELETE FROM contents WHERE (slug='" + slug + "');";
+        connection.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log('Item was deleted!' + result.affectedRows)
+        });
+        res.render("./admin/admin");
+    });
+
+    app.get('/admin/articles/edit/:slug', function (req, res) {
+        var index = req.params.slug;
+        titleEdit = index;
+        var connection = mysql.createConnection({
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
+
+        });
+
+        connection.connect();
+        console.log("строка0");
+        var sql = "SELECT * FROM `contents` where (slug='" + index + "');";
+        console.log(sql);
+        connection.query(sql, function (err, fields) {
+
+
+            var strng = JSON.stringify(fields);
+
+            var json =  JSON.parse(strng);
+            var oldContent = json[0].content;
+
+
+
+            res.render('./admin/edit', {oldContent});
+
+        });
+    });
+
+    app.post('/admin/articles/edit/editArticle', function (req, res) {
+        var article = req.body.content;
+        var connection = mysql.createConnection({
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
+
+        });
+        connection.connect();
+        var sql = "UPDATE contents SET content='" + article + "' WHERE slug='" + titleEdit + "';";
+
+        console.log(sql);
+        connection.query(sql);
+
+        res.render('./admin/admin')
+
+
+
+        });
+
+
 }
 

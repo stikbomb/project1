@@ -1,7 +1,7 @@
 extends layout
 
 block title
-    title Add slug
+    title Edit slug
 
 
 
@@ -28,15 +28,8 @@ block menu
 
 
 block content
-
-    form(id="admin", name="admin", method="post", action="sendItem")
+    form(id="editContent", name="editContent", method="post", action="editArticle")
         label(class="sr-only", for="title") Title
-        input(class="text", name="title", type="text", placeholder="Add title")
-        br
-        label(class="sr-only", for="slug") Slug
-        input(class="text", name="slug", type="text", placeholder="Add slug")
-        br
-        label(class="sr-only", for="content") Content
-        input(class="text", name="content", type="text", placeholder="Add content")
+        input(class="text", name="content", type="text", value= oldContent)
         br
         input(class="btn btn-primary mb-2", type="submit", value="Добавить")

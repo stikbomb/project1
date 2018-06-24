@@ -1,9 +1,6 @@
 extends layout
-
 block title
-    title Add slug
-
-
+    title #{json[0].title}
 
 
 block menu
@@ -25,18 +22,6 @@ block menu
                 li(class="nav-item")
                     a(class="nav-link", href="/logout") Выход
 
-
-
 block content
-
-    form(id="admin", name="admin", method="post", action="sendItem")
-        label(class="sr-only", for="title") Title
-        input(class="text", name="title", type="text", placeholder="Add title")
-        br
-        label(class="sr-only", for="slug") Slug
-        input(class="text", name="slug", type="text", placeholder="Add slug")
-        br
-        label(class="sr-only", for="content") Content
-        input(class="text", name="content", type="text", placeholder="Add content")
-        br
-        input(class="btn btn-primary mb-2", type="submit", value="Добавить")
+    h1 #{json[0].title}
+    p #{json[0].content}
