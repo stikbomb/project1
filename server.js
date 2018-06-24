@@ -18,11 +18,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 
-app.get('/', function(req, res) {
 
-    res.send('Welcome to Passport with Sequelize');
-
-});
 var port;
 function randomInteger(min, max) {
     var rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -40,13 +36,13 @@ app.listen(randomInteger(5000, 10000), function(err) {
 });
 
 //Models
-var models = require("./app/models");
+var models = require("./models");
 
 //Routes
-var authRoute = require('./app/routes/auth.js')(app,passport);
+var authRoute = require('./routes/auth.js')(app,passport);
 
 //load passport strategies
-require('./app/config/passport/passport.js')(passport, models.user);
+require('./config/passport/passport.js')(passport, models.user);
 
 //Sync Database
 models.sequelize.sync().then(function() {
@@ -60,9 +56,9 @@ models.sequelize.sync().then(function() {
 });
 
 //For Handlebars
-app.set('views', './app/views')
+app.set('views', './views')
 app.engine('hbs', exphbs({
     extname: '.hbs'
 }));
-app.set('view engine', '.hbs');
+app.set('view engine', 'pug');
 

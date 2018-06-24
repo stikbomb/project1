@@ -1,0 +1,32 @@
+extends layout
+
+block title
+    title Статьи
+
+block menu
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark")
+        a(class="navbar-brand", href="#") Navbar
+        button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#navbar1", aria-controls="navbar1", aria-expanded="false", aria-label="Toggle navigation")
+            span(class="navbar-toggler-icon")
+
+
+        div(class="collapse navbar-collapse", id="navbar1")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item")
+                    a(class="nav-link", href="/admin") Главная
+                        span(class="sr-only") (current)
+
+                li(class="nav-item active")
+                    a(class="nav-link", href="/admin/articles") Статьи
+
+                li(class="nav-item")
+                    a(class="nav-link", href="/logout") Выход
+
+block content
+    ul(class="list-group")
+        each val in rows
+            - var slug = "element/" + val.slug
+            li(class="list-group-item")=val.content
+    form(method="get", action="/admin/articles/add")
+        input(class="btn btn-primary mb-2", type="submit", value="Добавить статью")
+

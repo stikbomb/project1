@@ -1,9 +1,30 @@
 var authController = require('../controllers/authcontroller.js');
 var mysql      = require('mysql');
+var pug = require('pug');
+
+var db = require('../db.json');
 
 
 module.exports = function(app, passport) {
 
+    app.get('/', function (req, res) {
+        var connection = mysql.createConnection({
+
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
+
+        });
+
+        connection.connect();
+        connection.query("SELECT * FROM `contents`", function (err, rows) {
+            console.log(rows);
+            res.render('./user/index', {rows: rows});
+
+        });
+
+    });
 
     app.get('/signup', authController.signup);
 
@@ -12,35 +33,34 @@ module.exports = function(app, passport) {
 
 
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect: '/dashboard',
+            successRedirect: '/admin',
 
-            failureRedirect: '/signup'
+            failureRedirect: '/signin'
         }
     ));
 
     app.get('/admin', isLoggedIn, authController.admin);
 
-    // app.get('/dashboard', isLoggedIn, authController.dashboard);
 
-    app.get('/dashboard', function (req, res) {
+    app.get('/admin/articles', isLoggedIn, function (req, res) {
         var connection = mysql.createConnection({
 
-            host: 'localhost',
-            user: 'root',
-            password: '128500',
-            database: 'project1'
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
 
         });
 
         connection.connect();
         connection.query("SELECT * FROM `contents`", function (err, rows) {
             console.log(rows);
-            res.render('dashboard', {rows: rows});
+            res.render('./admin/articles', {rows: rows});
 
         });
-
     });
 
+    app.get('/admin/articles/add', isLoggedIn, authController.adminadd);
 
     app.get('/logout', authController.logout);
 
@@ -51,18 +71,17 @@ module.exports = function(app, passport) {
         }
     ));
 
-    app.post('/sendItem', function (req, res) {
-        // app.use(bodyParser.json());
-        // app.use(bodyParser.urlencoded({extended: false}));
+    app.post('/admin/articles/sendItem', function (req, res) {
+
         var content = req.body.content;
         var title = req.body.title;
         var slug = req.body.slug;
         var connection = mysql.createConnection({
 
-            host: 'localhost',
-            user: 'root',
-            password: '128500',
-            database: 'project1'
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
 
         });
 
@@ -77,7 +96,7 @@ module.exports = function(app, passport) {
     });
 
     app.post('/signin', passport.authenticate('local-signin', {
-            successRedirect: '/dashboard',
+            successRedirect: '/admin',
 
             failureRedirect: '/signin'
         }
@@ -95,14 +114,13 @@ module.exports = function(app, passport) {
     }
 
 
-    app.get('/element/:slug', function (req, res) {
+    app.get('/articles/:slug', function (req, res) {
         var index = req.params.slug;
         var connection = mysql.createConnection({
-
-            host: 'localhost',
-            user: 'root',
-            password: '128500',
-            database: 'project1'
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
 
         });
 
@@ -112,14 +130,15 @@ module.exports = function(app, passport) {
         connection.query(sql, function (err, fields) {
 
 
-            var string = JSON.stringify(fields);
+            var strng = JSON.stringify(fields);
 
-            var json =  JSON.parse(string);
-            console.log(string);
+            var json =  JSON.parse(strng);
+            console.log(strng);
             console.log(json);
+            console.log(json[0].title);
 
 
-            res.render('slug', {json});
+            res.render('./user/slug', {json});
 
 
         });

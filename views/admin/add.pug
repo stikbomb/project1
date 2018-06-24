@@ -1,0 +1,42 @@
+extends layout
+
+block title
+    title Dashboard
+
+
+
+
+block menu
+    nav(class="navbar navbar-expand-lg navbar-dark bg-dark")
+        a(class="navbar-brand", href="#") Navbar
+        button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#navbar1", aria-controls="navbar1", aria-expanded="false", aria-label="Toggle navigation")
+            span(class="navbar-toggler-icon")
+
+
+        div(class="collapse navbar-collapse", id="navbar1")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item")
+                    a(class="nav-link", href="/admin") Главная
+                        span(class="sr-only") (current)
+
+                li(class="nav-item active")
+                    a(class="nav-link", href="/admin/articles") Статьи
+
+                li(class="nav-item")
+                    a(class="nav-link", href="/logout") Выход
+
+
+
+block content
+
+    form(id="admin", name="admin", method="post", action="sendItem")
+        label(class="sr-only", for="title") Title
+        input(class="text", name="title", type="text", placeholder="Add title")
+        br
+        label(class="sr-only", for="slug") Slug
+        input(class="text", name="slug", type="text", placeholder="Add slug")
+        br
+        label(class="sr-only", for="content") Content
+        input(class="text", name="content", type="text", placeholder="Add content")
+        br
+        input(class="btn btn-primary mb-2", type="submit", value="Добавить")

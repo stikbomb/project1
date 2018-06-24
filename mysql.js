@@ -23,3 +23,15 @@ var answer = function(){
 
 module.exports.query = query;
 module.exports.answer = answer;
+
+// module.exports = function createConnection() {
+//     var connection = mysql.createConnection({
+//
+//         host: 'localhost',
+//         user: 'root',
+//         password: '128500',
+//         database: 'project1',
+//
+//     });
+//     connection.connect;
+// }
