@@ -17,5 +17,12 @@ block content
     ul(class="list-group")
         each val in rows
             - var slug = "articles/" + val.slug
+            -
             li(class="list-group-item")
-                a(href=slug) #{val.title}
+                H2
+                    a(href=slug) #{val.title}
+                p #{truncate(val.content, 100)}
+                    a(href=slug) >>>
+    script
+        - function truncate(str, maxlength) {return (str.length > maxlength) ? str.slice(0, maxlength - 3) : str;}
+
