@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="babc12fe-4bcd-4f63-b810-2c8b80f3331b" name="Default" comment="PRoject 1 - первый коммит">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/auth.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -16,11 +19,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="118" column="7" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
+            <state>
+              <caret lean-forward="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="authcontroller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/authcontroller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="passport.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/passport/passport.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-720">
+              <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -28,17 +58,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="828">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="slug.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/admin/slug.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="61" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
+            <state relative-caret-position="144">
+              <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -47,16 +68,16 @@
         <entry file="file://$PROJECT_DIR$/views/user/index.pug">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
-              <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="20" selection-end-column="41" />
+              <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="20" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signin.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/user/signin.pug">
+      <file leaf-file-name="test.pug" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/user/test.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
+            <state relative-caret-position="54">
+              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -64,17 +85,8 @@
       <file leaf-file-name="add.pug" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/admin/add.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-129">
+            <state relative-caret-position="18">
               <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="404.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/404.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -84,24 +96,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret selection-end-line="24" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/admin/edit.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="articles.pug" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/admin/articles.pug">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -123,6 +117,7 @@
       <find>body</find>
       <find>dash</find>
       <find>add</find>
+      <find>dese</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -138,7 +133,6 @@
         <option value="$PROJECT_DIR$/node_modules/dotenv/lib/main.js" />
         <option value="$PROJECT_DIR$/app/models/user.js" />
         <option value="$PROJECT_DIR$/app/models/item.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/app/mysql.js" />
         <option value="$PROJECT_DIR$/app/views/signup.hbs" />
         <option value="$PROJECT_DIR$/app/views/admin.hbs" />
@@ -149,7 +143,6 @@
         <option value="$PROJECT_DIR$/app/routes/auth.js" />
         <option value="$PROJECT_DIR$/app/config/passport/passport.js" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/config/passport/passport.js" />
         <option value="$PROJECT_DIR$/mysql.js" />
         <option value="$PROJECT_DIR$/mysqlmy.js" />
         <option value="$PROJECT_DIR$/db.json" />
@@ -171,6 +164,10 @@
         <option value="$PROJECT_DIR$/views/admin/add.pug" />
         <option value="$PROJECT_DIR$/views/admin/edit.pug" />
         <option value="$PROJECT_DIR$/views/404.pug" />
+        <option value="$PROJECT_DIR$/views/user/test.pug" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/models/user.js" />
+        <option value="$PROJECT_DIR$/config/passport/passport.js" />
         <option value="$PROJECT_DIR$/routes/auth.js" />
       </list>
     </option>
@@ -191,9 +188,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="32" />
-    <option name="width" value="1715" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="31" />
+    <option name="width" value="1429" />
     <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -204,7 +201,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -269,30 +265,32 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="isAu&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules/pug" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="/usr/share/node-v8.11.3-linux-arm64/lib/node_modules/npm" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/views/admin" />
-      <recent name="$PROJECT_DIR$/views/user" />
-      <recent name="$PROJECT_DIR$/app" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/views/admin" />
       <recent name="$PROJECT_DIR$/views/user" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$/views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views/admin" />
+      <recent name="$PROJECT_DIR$/views/user" />
+      <recent name="$PROJECT_DIR$/app" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -337,25 +335,25 @@
       <workItem from="1529581753890" duration="250000" />
       <workItem from="1529582686253" duration="1354000" />
       <workItem from="1529585066070" duration="21000" />
-      <workItem from="1529687764377" duration="58376000" />
+      <workItem from="1529687764377" duration="59574000" />
+      <workItem from="1529919365181" duration="17646000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147670000" />
+    <option name="totallyTimeSpent" value="166514000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="32" y="0" width="1715" height="1080" extended-state="0" />
+    <frame x="31" y="0" width="1429" height="1080" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.15936953" />
+      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.19131044" />
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32983193" />
       <window_info anchor="bottom" id="Version Control" order="4" />
-      <window_info id="npm" order="0" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.27310926" />
+      <window_info id="npm" order="0" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="2" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -367,6 +365,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32983193" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32983193" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -374,20 +373,20 @@
       <window_info id="npm" order="0" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.32983193" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.14459746" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="bottom" id="Find" order="6" weight="0.32983193" />
+      <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.39915967" />
       <window_info anchor="bottom" id="Terminal" order="2" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="4" />
-      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32983193" />
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32983193" />
-      <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.14459746" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,20 +400,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="PRoject 1 - первый коммит" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1206">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="32" lean-forward="true" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/auth.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1008">
@@ -422,13 +407,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="53" lean-forward="true" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin.hbs" />
     <entry file="file://$PROJECT_DIR$/config/passport/passport.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1008">
@@ -457,13 +436,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.json" />
     <entry file="file://$PROJECT_DIR$/models/item.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -506,23 +479,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/signup.hbs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/signin.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/views/signup.hbs" />
+    <entry file="file://$PROJECT_DIR$/views/signin.hbs" />
+    <entry file="file://$PROJECT_DIR$/app/config/config.json" />
     <entry file="file://$PROJECT_DIR$/config/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -542,13 +501,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/error.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/views/error.jade" />
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -573,13 +526,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/slug.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/views/slug.hbs" />
     <entry file="file://$PROJECT_DIR$/mysql.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -587,45 +534,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mysqlmy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" column="29" lean-forward="true" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-end-line="24" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/dashboard.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/mysqlmy.js" />
+    <entry file="file://$PROJECT_DIR$/views/admin.hbs" />
+    <entry file="file://$PROJECT_DIR$/views/dashboard.hbs" />
     <entry file="file://$PROJECT_DIR$/views/admin/layout.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/authcontroller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/passport/passport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-714">
-          <caret line="116" column="23" lean-forward="true" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -653,13 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/user/slug.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -674,13 +582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/index.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="20" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/user/signin.pug">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -690,7 +591,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/articles.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
+        <state relative-caret-position="594">
           <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
         </state>
       </provider>
@@ -704,22 +605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/edit.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
+        <state relative-caret-position="540">
           <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin/add.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-129">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/layout.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="24" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -730,17 +617,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/layout.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="24" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/index.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/test.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/add.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="144">
+          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/passport/lib/framework/connect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="118" column="7" selection-start-line="118" selection-start-column="7" selection-end-line="118" selection-end-column="7" />
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/passport/passport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-720">
+          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/authcontroller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
         </state>
       </provider>
     </entry>

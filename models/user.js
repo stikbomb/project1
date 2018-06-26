@@ -26,6 +26,10 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.TEXT
         },
 
+        role: {
+            type: Sequelize.TEXT
+        },
+
         email: {
             type: Sequelize.STRING,
             validate: {

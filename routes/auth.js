@@ -8,7 +8,12 @@ var titleEdit;
 
 module.exports = function(app, passport) {
 
-    app.get('/', function (req, res) {
+    // app.get('/', function(req, res) {
+    //     res.render('./user/test');
+    // });
+
+
+        app.get('/', function (req, res) {
         var connection = mysql.createConnection({
 
             host: db.host,
@@ -40,10 +45,10 @@ module.exports = function(app, passport) {
         }
     ));
 
-    app.get('/admin', isLoggedIn, authController.admin);
+    app.get('/admin', isLoggedIn, isAdmin, authController.admin);
 
 
-    app.get('/admin/articles', isLoggedIn, function (req, res) {
+    app.get('/admin/articles', isAdmin, function (req, res) {
         var connection = mysql.createConnection({
 
             host: db.host,
@@ -61,7 +66,7 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.get('/admin/articles/add', isLoggedIn, authController.adminadd);
+    app.get('/admin/articles/add', isAdmin, authController.adminadd);
 
     app.get('/logout', authController.logout);
 
@@ -72,7 +77,7 @@ module.exports = function(app, passport) {
         }
     ));
 
-    app.post('/admin/articles/sendItem', function (req, res) {
+    app.post('/admin/articles/sendItem', isAdmin, function (req, res) {
 
         var content = req.body.content;
         var title = req.body.title;
@@ -107,12 +112,41 @@ module.exports = function(app, passport) {
     function isLoggedIn(req, res, next) {
 
         if (req.isAuthenticated())
-
             return next();
 
         res.redirect('/404');
 
     }
+
+    function isAdmin(req, res, next) {
+        var connection = mysql.createConnection({
+            host: db.host,
+            user: db.user,
+            password: db.password,
+            database: db.database
+
+        });
+
+        connection.connect();
+        var sql = "SELECT * FROM `users` where (id='" + req.session.passport.user + "')";
+        console.log(sql);
+        connection.query(sql, function (err, fields) {
+
+
+            var strng = JSON.stringify(fields);
+
+            var json =  JSON.parse(strng);
+            console.log(strng);
+            console.log(json);
+            console.log(json[0].id);
+            if (json[0].role === 'admin') {
+                return next();
+                }
+                res.redirect('/404')
+
+        });
+    };
+
 
     app.get('/404', function(res, req) {
         req.render('./404');
@@ -148,7 +182,7 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.get('/admin/articles/:slug', isLoggedIn, function (req, res) {
+    app.get('/admin/articles/:slug', isAdmin, function (req, res) {
         var index = req.params.slug;
         var connection = mysql.createConnection({
             host: db.host,
@@ -178,7 +212,7 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.post('/admin/articles/delete/:slug', function (req, res) {
+    app.post('/admin/articles/delete/:slug', isAdmin, function (req, res) {
 
 
         var slug = req.params.slug;
@@ -200,7 +234,7 @@ module.exports = function(app, passport) {
         res.render("./admin/admin");
     });
 
-    app.get('/admin/articles/edit/:slug', function (req, res) {
+    app.get('/admin/articles/edit/:slug', isAdmin, function (req, res) {
         var index = req.params.slug;
         titleEdit = index;
         var connection = mysql.createConnection({
@@ -230,7 +264,7 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.post('/admin/articles/edit/editArticle', function (req, res) {
+    app.post('/admin/articles/edit/editArticle', isAdmin, function (req, res) {
         var article = req.body.content;
         var connection = mysql.createConnection({
             host: db.host,
@@ -252,5 +286,5 @@ module.exports = function(app, passport) {
         });
 
 
-}
+};
 
