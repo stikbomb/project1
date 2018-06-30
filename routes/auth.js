@@ -1,35 +1,28 @@
 var authController = require('../controllers/authcontroller.js');
 var mysql      = require('mysql');
 var pug = require('pug');
-
 var db = require('../db.json');
+
 
 var titleEdit;
 
+connection = mysql.createConnection({
+
+    host: db.host,
+    user: db.user,
+    password: db.password,
+    database: db.database
+});
+
+connection.connect();
+
 module.exports = function(app, passport) {
 
-    // app.get('/', function(req, res) {
-    //     res.render('./user/test');
-    // });
-
-
         app.get('/', function (req, res) {
-        var connection = mysql.createConnection({
-
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
-
-        });
-
-        connection.connect();
-        connection.query("SELECT * FROM `contents`", function (err, rows) {
+            connection.query("SELECT * FROM `contents`", function (err, rows) {
             console.log(rows);
             res.render('./user/index', {rows: rows});
-
         });
-
     });
 
     app.get('/signup', authController.signup);
@@ -49,16 +42,7 @@ module.exports = function(app, passport) {
 
 
     app.get('/admin/articles', isAdmin, function (req, res) {
-        var connection = mysql.createConnection({
 
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
-
-        });
-
-        connection.connect();
         connection.query("SELECT * FROM `contents`", function (err, rows) {
             console.log(rows);
             res.render('./admin/articles', {rows: rows});
@@ -82,16 +66,7 @@ module.exports = function(app, passport) {
         var content = req.body.content;
         var title = req.body.title;
         var slug = req.body.slug;
-        var connection = mysql.createConnection({
 
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
-
-        });
-
-        connection.connect();
         var sql = "INSERT INTO contents (content, title, slug) VALUES ?";
         var values = [[content.toString(), title.toString(), slug.toString()]];
         connection.query(sql, [values], function (err, result) {
@@ -119,16 +94,10 @@ module.exports = function(app, passport) {
     }
 
     function isAdmin(req, res, next) {
-        var connection = mysql.createConnection({
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
 
-        });
+        var userJ = JSON.parse(req.session.passport.user);
 
-        connection.connect();
-        var sql = "SELECT * FROM `users` where (id='" + req.session.passport.user + "')";
+        var sql = "SELECT * FROM `users` where (id='" + userJ.id + "')";
         console.log(sql);
         connection.query(sql, function (err, fields) {
 
@@ -138,7 +107,6 @@ module.exports = function(app, passport) {
             var json =  JSON.parse(strng);
             console.log(strng);
             console.log(json);
-            console.log(json[0].id);
             if (json[0].role === 'admin') {
                 return next();
                 }
@@ -154,17 +122,7 @@ module.exports = function(app, passport) {
 
     app.get('/articles/:slug', function (req, res) {
         var index = req.params.slug;
-        var connection = mysql.createConnection({
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
-
-        });
-
-        connection.connect();
         var sql = "SELECT * FROM `contents` where (slug='" + index + "')";
-        console.log(sql);
         connection.query(sql, function (err, fields) {
 
 
@@ -184,15 +142,7 @@ module.exports = function(app, passport) {
 
     app.get('/admin/articles/:slug', isAdmin, function (req, res) {
         var index = req.params.slug;
-        var connection = mysql.createConnection({
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
 
-        });
-
-        connection.connect();
         var sql = "SELECT * FROM `contents` where (slug='" + index + "')";
         console.log(sql);
         connection.query(sql, function (err, fields) {
@@ -216,16 +166,7 @@ module.exports = function(app, passport) {
 
 
         var slug = req.params.slug;
-        var connection = mysql.createConnection({
 
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
-
-        });
-
-        connection.connect();
         var sql = "DELETE FROM contents WHERE (slug='" + slug + "');";
         connection.query(sql, function (err, result) {
             if (err) throw err;
@@ -237,15 +178,7 @@ module.exports = function(app, passport) {
     app.get('/admin/articles/edit/:slug', isAdmin, function (req, res) {
         var index = req.params.slug;
         titleEdit = index;
-        var connection = mysql.createConnection({
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
 
-        });
-
-        connection.connect();
         console.log("строка0");
         var sql = "SELECT * FROM `contents` where (slug='" + index + "');";
         console.log(sql);
@@ -266,14 +199,7 @@ module.exports = function(app, passport) {
 
     app.post('/admin/articles/edit/editArticle', isAdmin, function (req, res) {
         var article = req.body.content;
-        var connection = mysql.createConnection({
-            host: db.host,
-            user: db.user,
-            password: db.password,
-            database: db.database
 
-        });
-        connection.connect();
         var sql = "UPDATE contents SET content='" + article + "' WHERE slug='" + titleEdit + "';";
 
         console.log(sql);
@@ -283,8 +209,50 @@ module.exports = function(app, passport) {
 
 
 
+    });
+
+    app.get('/auth/vk',
+        passport.authenticate('vk', {
+            scope: ['friends']
+        }),
+        function (req, res) {
+            // The request will be redirected to vk.com
+            // for authentication, so
+            // this function will not be called.
         });
 
+    app.get('/auth/vk/callback',
+        passport.authenticate('vk', {
+            failureRedirect: '/auth'
+        }),
+        function (req, res) {
+            // Successful authentication
+            //, redirect home.
+            console.log("Удачная аутентификация!!!длаа")
+            res.redirect('/');
+        });
 
+    app.get('/auth', function (req, res) {
+
+        if (req.isAuthenticated()) {
+            res.redirect('/');
+            return;
+        }
+
+        res.render('auth');
+    });
+
+    app.get('/sign-out', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+
+    app.get('/vksucces', isLoggedIn, function (req, res) {
+        var usern = JSON.parse(req.session.passport.user);
+        console.log(req.session.passport.user);
+        console.log(usern);
+        res.render("./vksucces", {usern});
+    });
 };
+
 

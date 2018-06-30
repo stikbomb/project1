@@ -6,7 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var itemRouter = require('./routes/item')
+var itemRouter = require('./routes/item');
+var passport   = require('passport');
 var app = express();
 
 
@@ -41,5 +42,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({extended: true}));
+app.use(require('express-session')({secret:'keyboard cat', resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 module.exports = app;
 

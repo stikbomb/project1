@@ -5,7 +5,7 @@ var session    = require('express-session');
 var bodyParser = require('body-parser');
 var env = require('dotenv').load();
 var exphbs = require('express-handlebars');
-var mysql      = require('mysql');
+
 
 //For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,20 +17,10 @@ app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}))
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
-
-
-var port;
-function randomInteger(min, max) {
-    var rand = min - 0.5 + Math.random() * (max - min + 1);
-    rand = Math.round(rand);
-    port = rand;
-    return rand;
-}
-
-app.listen(randomInteger(5000, 10000), function(err) {
+app.listen(3000, function(err) {
 
     if (!err)
-        console.log("Site is live on " + port);
+        console.log("Site is live!!!");
     else console.log(err)
 
 });
@@ -57,8 +47,5 @@ models.sequelize.sync().then(function() {
 
 //For Handlebars
 app.set('views', './views')
-app.engine('hbs', exphbs({
-    extname: '.hbs'
-}));
 app.set('view engine', 'pug');
 

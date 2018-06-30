@@ -1,27 +1,44 @@
 //load bcrypt
 var bCrypt = require('bcrypt-nodejs');
+const VKontakteStrategy = require('passport-vkontakte').Strategy;
+var vk = require('./vk.json');
+
 module.exports = function(passport,user){
 
     var User = user;
     var LocalStrategy = require('passport-local').Strategy;
 
 
-    passport.serializeUser(function(user, done) {
-        done(null, user.id);
+    // passport.serializeUser(function(user, done) {
+    //     done(null, user.id);
+    // });
+    passport.serializeUser(function (user, done) {
+        done(null, JSON.stringify(user));
+        console.log("HERE!!!!!!" + JSON.stringify(user));
+        console.log(user);
+        console.log(user.username);
     });
 
 
     // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        User.findById(id).then(function(user) {
-            if(user){
-                done(null, user.get());
-            }
-            else{
-                done(user.errors,null);
-            }
-        });
+    // passport.deserializeUser(function(id, done) {
+    //     User.findById(id).then(function(user) {
+    //         if(user){
+    //             done(null, user.get());
+    //         }
+    //         else{
+    //             done(user.errors,null);
+    //         }
+    //     });
+    //
+    // });
 
+    passport.deserializeUser(function (data, done) {
+        try {
+            done(null, JSON.parse(data));
+        } catch (e) {
+            done(err)
+        }
     });
 
 
@@ -174,6 +191,25 @@ module.exports = function(passport,user){
 
         }
     ));
+
+
+    passport.use('vk', new VKontakteStrategy(
+        {
+            clientID: vk.VK_APP_ID,
+            clientSecret: vk.VK_APP_SECRET,
+            callbackURL:  "http://localhost:3000/auth/vk/callback"
+        },
+
+        function (accessToken, refreshToken, profile, done) {
+
+            return done(null, {
+                username: profile.displayName,
+                photoUrl: profile.photos[0].value,
+                profileUrl: profile.profileUrl
+            });
+        }
+    ));
+
 
 
 

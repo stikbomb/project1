@@ -1,6 +1,4 @@
 var exports = module.exports = {}
-var mysql      = require('mysql');
-const pug = require('pug');
 
 exports.signup = function(req, res) {
 
