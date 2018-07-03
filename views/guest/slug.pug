@@ -1,0 +1,39 @@
+extends layout
+block title
+    title #{json[0].title}
+
+
+block menu
+    nav(class="navbar navbar-expand-lg navbar-light", style="background-color: #e3f2fd")
+        a(class="navbar-brand", href="#") Navbar
+        button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#navbar1", aria-controls="navbar1", aria-expanded="false", aria-label="Toggle navigation")
+            span(class="navbar-toggler-icon")
+
+
+        div(class="collapse navbar-collapse", id="navbar1")
+            ul(class="navbar-nav mr-auto")
+                li(class="nav-item")
+                    a(class="nav-link", href="/admin") Главная
+                        span(class="sr-only") <current></current>
+                li(class="nav-item dropdown")
+                    a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') Вход
+
+                    .dropdown-menu
+                        form.px-4.py-3(id="signin", name="signin", method="post", action="/signin")
+                            .form-group
+                                label(class="sr-only")
+                                input.form-control(class="text" name="email" type="text" placeholder="e-mail")
+                                br
+                            .form-group
+                                label(class="sr-only")
+                                input.form-control(name="password" type="password" placeholder="password")
+                                br
+                                br
+                                input(class="btn btn-primary mb-2", type="submit", value="Sign In")
+                        .dropdown-divider
+                        a.dropdown-item(href="/auth/vk") Войти через Vk.com
+                        a.dropdown-item(href='/signup') Регистрация
+
+block content
+    h1 #{json[0].title}
+    p #{json[0].content}

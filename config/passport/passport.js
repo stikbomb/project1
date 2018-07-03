@@ -1,7 +1,7 @@
 //load bcrypt
 var bCrypt = require('bcrypt-nodejs');
 const VKontakteStrategy = require('passport-vkontakte').Strategy;
-var vk = require('./vk.json');
+var vk = require('../vk.json');
 
 module.exports = function(passport,user){
 

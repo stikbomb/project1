@@ -29,7 +29,8 @@ block menu
 
 block content
     form(id="editContent", name="editContent", method="post", action="editArticle")
-        label(class="sr-only", for="title") Title
-        input(class="text", name="content", type="text", value= oldContent)
-        br
-        input(class="btn btn-primary mb-2", type="submit", value="Добавить")
+        .form-group
+            label(class="sr-only", for="title") Title
+            textarea(class ="form-control", for="exampleFormControlTextarea1", rows='7', name="content", type="text") #{oldContent}
+            br
+            input(class="btn btn-primary mb-2", type="submit", value="Добавить")

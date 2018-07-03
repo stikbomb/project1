@@ -14,9 +14,10 @@ block menu
             ul(class="navbar-nav mr-auto")
                 li(class="nav-item")
                     a(class="nav-link", href="/admin") Главная
-                        span(class="sr-only") <current></current>
+                        span(class="sr-only")
                 li(class="nav-item")
-                    a(class="nav-link", href="/signin") Вход
+                    a(class="nav-link", href="/logout") Выход
+                        span(class="sr-only")
 
 block content
     h1 #{json[0].title}

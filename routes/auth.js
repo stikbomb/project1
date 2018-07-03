@@ -1,6 +1,5 @@
 var authController = require('../controllers/authcontroller.js');
-var mysql      = require('mysql');
-var pug = require('pug');
+var mysql = require('mysql');
 var db = require('../db.json');
 
 
@@ -18,21 +17,23 @@ connection.connect();
 
 module.exports = function(app, passport) {
 
-        app.get('/', function (req, res) {
-            connection.query("SELECT * FROM `contents`", function (err, rows) {
-            console.log(rows);
+    app.get('/', function (req, res) {
+
+        connection.query("SELECT * FROM `contents`", function (err, rows) {
+        console.log(rows);
+        if (req.isAuthenticated()) {
             res.render('./user/index', {rows: rows});
+        } else {
+            res.render('./guest/index', {rows: rows});
+        };
         });
     });
 
     app.get('/signup', authController.signup);
 
 
-    app.get('/signin', authController.signin);
-
-
     app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect: '/admin',
+            successRedirect: '/',
 
             failureRedirect: '/signin'
         }
@@ -73,11 +74,11 @@ module.exports = function(app, passport) {
             if (err) throw err;
             console.log('Item was added!' + result.affectedRows)
         });
-        res.send(content);
+        res.redirect('/admin/articles');
     });
 
     app.post('/signin', passport.authenticate('local-signin', {
-            successRedirect: '/admin',
+            successRedirect: '/',
 
             failureRedirect: '/signin'
         }
@@ -133,8 +134,12 @@ module.exports = function(app, passport) {
             console.log(json);
             console.log(json[0].title);
 
+            if (req.isAuthenticated()) {
+                res.render('./user/slug', {json});
+            } else {
+                res.render('./guest/slug', {json});
+            };
 
-            res.render('./user/slug', {json});
 
 
         });
@@ -172,7 +177,7 @@ module.exports = function(app, passport) {
             if (err) throw err;
             console.log('Item was deleted!' + result.affectedRows)
         });
-        res.render("./admin/admin");
+        res.redirect('/admin/articles')
     });
 
     app.get('/admin/articles/edit/:slug', isAdmin, function (req, res) {
@@ -205,7 +210,7 @@ module.exports = function(app, passport) {
         console.log(sql);
         connection.query(sql);
 
-        res.render('./admin/admin')
+        res.redirect('/admin/articles')
 
 
 
@@ -231,21 +236,6 @@ module.exports = function(app, passport) {
             console.log("Удачная аутентификация!!!длаа")
             res.redirect('/');
         });
-
-    app.get('/auth', function (req, res) {
-
-        if (req.isAuthenticated()) {
-            res.redirect('/');
-            return;
-        }
-
-        res.render('auth');
-    });
-
-    app.get('/sign-out', function (req, res) {
-        req.logout();
-        res.redirect('/');
-    });
 
     app.get('/vksucces', isLoggedIn, function (req, res) {
         var usern = JSON.parse(req.session.passport.user);

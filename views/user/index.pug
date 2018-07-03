@@ -9,10 +9,11 @@ block menu
         div(class="collapse navbar-collapse", id="navbar1")
             ul(class="navbar-nav mr-auto")
                 li(class="nav-item active")
-                    a(class="nav-link", href="/admin") Главная
+                    a(class="nav-link", href="/") Главная
                         span(class="sr-only") (current)
                 li(class="nav-item")
-                    a(class="nav-link", href="/signin") Вход
+                    a(class="nav-link", href="/logout") Выход
+                        span(class="sr-only")
 block content
     ul(class="list-group")
         each val in rows
