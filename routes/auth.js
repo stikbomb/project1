@@ -133,11 +133,9 @@ module.exports = function(app, passport) {
                 console.log(JSON.stringify(count));
                 let pages = Math.ceil(count[0].count / 5);
                 console.log(pages);
-                if (req.isAuthenticated()) {
-                    res.render('./guest/page', {rows: rows, pages: pages, current: req.params.num});
-                } else {
-                    res.render('./guest/page', {rows: rows, pages: pages, current: req.params.num});
-                }
+                mysqlcon.connection.query("SELECT DISTINCT tag FROM tags", (err, tags) => {
+                    res.render('./guest/page', {rows: rows, pages: pages, current: req.params.num, tags: tags});
+                })
             });
 
         });
@@ -244,8 +242,7 @@ module.exports = function(app, passport) {
             let sql2 = "SELECT * FROM `comments` where (slug='" + index + "')";
             mysqlcon.connection.query(sql2, (err, result) => {
                 console.log(result);
-                let sql2 = "SELECT * FROM `tags` where (slug='" + index + "')";
-                mysqlcon.connection.query(sql2, (err, tags) => {
+                mysqlcon.connection.query("SELECT DISTINCT tag FROM tags", (err, tags) => {
                     res.render('./guest/article', {json: json, user: req.user, comments: result, tags: tags});
                 });
             });
