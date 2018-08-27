@@ -113,21 +113,14 @@ module.exports = function(app, passport) {
 
     app.get('/', (req, res) => {
 
-        mysqlcon.connection.query("SELECT * FROM `contents` ORDER BY createdAt DESC LIMIT 5", async (err, rows) => {
-            console.log(typeof rows);
-            let tagsArray = [];
-            await rows.forEach(async (row) => {
-
-                await mysqlcon.connection.query("SELECT * FROM `tags` where (slug='" + row.slug + "')", async (err, tags) => {
-                    // console.log(tags);
-                    await tagsArray.push(tags);
-                });
-
+        mysqlcon.connection.query("SELECT * FROM `contents` ORDER BY createdAt DESC LIMIT 5", (err, rows) => {
+            mysqlcon.connection.query("SELECT DISTINCT tag FROM tags", (err, tags) => {
+                console.log(tags);
+                res.render('./guest/index', {rows: rows, user: req.user, tags: tags});
             });
-            console.log(tagsArray);
-            // console.log(jRows[0]);
-            res.render('./guest/index', {rows: rows, user: req.user});
+
         });
+
     });
 
     app.get('/articles/page/:num', (req, res) => {
@@ -381,7 +374,23 @@ module.exports = function(app, passport) {
         console.log(char);
         mysqlcon.connection.query("SELECT * FROM `contents` WHERE content1 LIKE '%" + char + "%'", (err, rows) => {
             // res.sendStatus(200);
-            res.render('./guest/index', {rows: rows, user: req.user});
+            mysqlcon.connection.query("SELECT DISTINCT tag FROM tags", (err, tags) => {
+                console.log(tags);
+                let string = 'Search result for "' + char + '"';
+                res.render('./guest/result', {rows: rows, user: req.user, string: string, tags: tags});
+            });
+        })
+    });
+
+    app.get('/tags/:tag', async (req, res) => {
+        let tag = req.params.tag;
+        mysqlcon.connection.query("SELECT * FROM tags LEFT JOIN contents USING(slug) WHERE tag='" + tag +"'", (err, rows) => {
+            // res.sendStatus(200);
+            mysqlcon.connection.query("SELECT DISTINCT tag FROM tags", (err, tags) => {
+                console.log(tags);
+                let string = 'All articles by tag "' + tag + '"';
+                res.render('./guest/result', {rows: rows, user: req.user, string: string, tags: tags});
+            })
         })
     });
 
