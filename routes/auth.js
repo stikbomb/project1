@@ -1,4 +1,5 @@
 let authController = require('../controllers/authcontroller.js');
+let profileController = require('../controllers/profileController.js');
 let mysqlcon = require('../mysqlcon');
 var faker = require('faker');
 var request = require('request');
@@ -12,29 +13,6 @@ let titleEdit;
 mysqlcon.connection.connect();
 
 module.exports = function(app, passport) {
-    // app.get('/', function(req, res) {
-    //     res.send(req.flash());
-    // });
-    //
-    // app.post('/download2', async (req, res) => {
-    //
-    //     var link = req.body.link;
-    //     var title = req.body.title;
-    //     var path = "/uploads/";
-    //     res.setHeader("content-disposition", "attachment; filename="+ title +".jpg");
-    //     await request(link).pipe(fs.createWriteStream("public"+path + title+".jpg"));
-    //     res.sendStatus(200);
-    // });
-    //
-    // app.post('/download', function (req, res) {
-    //     var path = "/uploads/";
-    //     var title = req.body.title;
-    //     var file = fs.createWriteStream("public"+path + title+".jpg");
-    //     http.get(req.body.link, function (response) {
-    //         response.pipe(file);
-    //     });
-    // });
-
 
     ///////
     //AUTH
@@ -148,7 +126,7 @@ module.exports = function(app, passport) {
 
     app.get('/admin/articles', isLoggedIn, isAdmin,(req, res) => {
 
-        mysqlcon.connection.query("SELECT * FROM `contents`", function (err, rows) {
+        mysqlcon.connection.query("SELECT * FROM `contents` ORDER BY createdAt DESC", function (err, rows) {
             console.log(rows);
             res.render('./admin/articles', {rows: rows});
 
@@ -231,6 +209,29 @@ module.exports = function(app, passport) {
         req.render('./404');
     });
 
+    // app.get('/articles/:slug', function (req, res) {
+    //     let index = req.params.slug;
+    //     let sql = "SELECT * FROM `contents` where (slug='" + index + "')";
+    //     mysqlcon.connection.query(sql, (err, fields) => {
+    //
+    //
+    //         var strng = JSON.stringify(fields);
+    //         var json = JSON.parse(strng);
+    //         let sql2 = "SELECT * FROM `comments` where (slug='" + index + "')";
+    //         mysqlcon.connection.query(sql2, (err, result) => {
+    //             console.log(result);
+    //             mysqlcon.connection.query("SELECT DISTINCT tag FROM tags", (err, artTags) => {
+    //                 if (err) throw err;
+    //                 let sql2 = "SELECT * FROM `tags` where (slug='" + index + "')";
+    //                 mysqlcon.connection.query(sql2, (err, tags) => {
+    //                     res.render('./guest/article', {json: json, user: req.user, comments: result, tags: tags, artTags: artTags});
+    //                 })
+    //             })
+    //         });
+    //     });
+    // });
+
+
     app.get('/articles/:slug', function (req, res) {
         let index = req.params.slug;
         let sql = "SELECT * FROM `contents` where (slug='" + index + "')";
@@ -242,8 +243,11 @@ module.exports = function(app, passport) {
             let sql2 = "SELECT * FROM `comments` where (slug='" + index + "')";
             mysqlcon.connection.query(sql2, (err, result) => {
                 console.log(result);
-                mysqlcon.connection.query("SELECT DISTINCT tag FROM tags", (err, tags) => {
-                    res.render('./guest/article', {json: json, user: req.user, comments: result, tags: tags});
+                let sql2 = "SELECT * FROM `tags` where (slug='" + index + "')";
+                mysqlcon.connection.query(sql2, (err, artTags) => {
+                    mysqlcon.connection.query("SELECT DISTINCT tag FROM tags", (err, tags) => {
+                        res.render('./guest/article', {json: json, user: req.user, comments: result, tags: tags, artTags: artTags});
+                    });
                 });
             });
         });
@@ -391,46 +395,10 @@ module.exports = function(app, passport) {
         })
     });
 
-    app.get('/admin/profile', isLoggedIn, isAdmin, (req, res) => {
-        let user = JSON.parse(req.session.passport.user);
-        res.render('./admin/profile', {user: user});
-    });
-
-    app.post('/admin/profile/changeemail', isLoggedIn, isAdmin, (req, res) => {
-        let usern = JSON.parse(req.session.passport.user);
-        let email = req.body.newemail;
-        mysqlcon.connection.query("UPDATE users SET email='" + email + "' WHERE email='" + usern.email + "';", async (err) => {
-            if (err) throw err;
-            await mysqlcon.connection.query("SELECT * FROM `users` WHERE email='" + email + "';", (err, user) => {
-                console.log(user);
-                let string = JSON.stringify(user);
-                let jUser = JSON.parse(string);
-                console.log(jUser);
-                res.render('./admin/profile', {user: jUser[0]});
-            })
-        })
-    });
-
-    app.post('/admin/profile/changename', isLoggedIn, isAdmin, (req, res) => {
-        let usern = JSON.parse(req.session.passport.user);
-        let name = req.body.newname;
-        mysqlcon.connection.query("UPDATE users SET username='" + name + "' WHERE email='" + usern.email + "';", async (err) => {
-            if (err) throw err;
-            await mysqlcon.connection.query("SELECT * FROM `users` WHERE email='" + usern.email + "';", (err, user) => {
-                console.log(user);
-                let string = JSON.stringify(user);
-                let jUser = JSON.parse(string);
-                console.log(jUser);
-                res.render('./admin/profile', {user: jUser[0]});
-            })
-        })
-    });
-
-    app.post('/admin/profile/changeavatar', isLoggedIn, isAdmin, (req, res) => {
-        let link = req.body.link;
-        request(link).pipe(fs.createWriteStream("public/images/avatar.jpg"));
-        res.redirect('/admin/profile');
-    })
+    app.get('/admin/profile', isLoggedIn, isAdmin, profileController.profile);
+    app.post('/admin/profile/changeemail', isLoggedIn, isAdmin, profileController.changeEmail);
+    app.post('/admin/profile/changename', isLoggedIn, isAdmin, profileController.changeName);
+    app.post('/admin/profile/changeavatar', isLoggedIn, isAdmin, profileController.changeAvatar);
 
 
 

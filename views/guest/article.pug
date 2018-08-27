@@ -14,8 +14,8 @@ block content
         img.img-fluid.rounded(src='/uploads/' + json[0].slug + '.jpg', alt='')
         hr
         h3.mt-4 Tags:
-            each val in tags
-                a(href='/articles/search/' + val.tag)  #{val.tag}
+            each val in artTags
+                a(href='/tags/' + val.tag)  #{val.tag}
         // Post Content
         p.lead #{json[0].content1}
         p #{json[0].content2}
