@@ -337,11 +337,26 @@ module.exports = function(app, passport) {
     });
 
     app.post('/articles/comment/:slug', isLoggedIn, function (req, res) {
+        console.log("HERE" + req.session.passport.user);
+        console.log("HERE" + req.session.passport.user.role);
         let user = JSON.parse(req.session.passport.user);
+        console.log(user);
+        console.log("tHERE" + user.role);
+        let name;
+        let avatar;
+        let url;
+        if(user.role === "admin") {
+            console.log(req.session.passport.user);
+            name = user.username;
+            avatar = '/images/avatar.jpg';
+            url = '/';
+        } else {
+            name = user.username;
+            avatar = user.photoUrl;
+            url = user.profileUrl;
+        }
         let content = req.body.content;
-        let name = user.username;
-        let avatar = user.photoUrl;
-        let url = user.profileUrl;
+
         let slug = req.params.slug;
         let createFormat = moment(new Date()).format("HH:mm:ss DD.MM.YYYY");
         let sql = "INSERT INTO comments (slug, content, name, avatar, url, createFormat) VALUES ?";
@@ -368,6 +383,47 @@ module.exports = function(app, passport) {
             // res.sendStatus(200);
             res.render('./guest/index', {rows: rows, user: req.user});
         })
+    });
+
+    app.get('/admin/profile', isLoggedIn, isAdmin, (req, res) => {
+        let user = JSON.parse(req.session.passport.user);
+        res.render('./admin/profile', {user: user});
+    });
+
+    app.post('/admin/profile/changeemail', isLoggedIn, isAdmin, (req, res) => {
+        let usern = JSON.parse(req.session.passport.user);
+        let email = req.body.newemail;
+        mysqlcon.connection.query("UPDATE users SET email='" + email + "' WHERE email='" + usern.email + "';", async (err) => {
+            if (err) throw err;
+            await mysqlcon.connection.query("SELECT * FROM `users` WHERE email='" + email + "';", (err, user) => {
+                console.log(user);
+                let string = JSON.stringify(user);
+                let jUser = JSON.parse(string);
+                console.log(jUser);
+                res.render('./admin/profile', {user: jUser[0]});
+            })
+        })
+    });
+
+    app.post('/admin/profile/changename', isLoggedIn, isAdmin, (req, res) => {
+        let usern = JSON.parse(req.session.passport.user);
+        let name = req.body.newname;
+        mysqlcon.connection.query("UPDATE users SET username='" + name + "' WHERE email='" + usern.email + "';", async (err) => {
+            if (err) throw err;
+            await mysqlcon.connection.query("SELECT * FROM `users` WHERE email='" + usern.email + "';", (err, user) => {
+                console.log(user);
+                let string = JSON.stringify(user);
+                let jUser = JSON.parse(string);
+                console.log(jUser);
+                res.render('./admin/profile', {user: jUser[0]});
+            })
+        })
+    });
+
+    app.post('/admin/profile/changeavatar', isLoggedIn, isAdmin, (req, res) => {
+        let link = req.body.link;
+        request(link).pipe(fs.createWriteStream("public/images/avatar.jpg"));
+        res.redirect('/admin/profile');
     })
 
 

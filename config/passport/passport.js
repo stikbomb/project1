@@ -69,9 +69,9 @@ module.exports = function(passport,user){
                     var userPassword = generateHash(password);
                     var data =
                         { email:email,
-                            password:userPassword,
-                            firstname: req.body.firstname,
-                            lastname: req.body.lastname
+                            password: userPassword,
+                            username: req.body.name,
+                            role: 'admin'
                         };
 
 

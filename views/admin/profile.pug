@@ -1,0 +1,42 @@
+extends layout
+block title
+    title Main page
+block css
+    link(rel='stylesheet' href='/css/bsValidator.min.css')
+
+block content
+    h1.mt-4 Add article
+    hr
+    .media.mb-4
+        img.d-flex.mr-3.rounded-circle(src='/images/avatar.jpg' alt='')
+        .media-body
+            h5.mt-0 Your name: #{user.username}
+            h5.mt-0 Your email: #{user.email}
+            hr
+    form(id="newname", name="newname", method="post", action="/admin/profile/changename")
+        .form-group
+            label(for='title') Enter new name
+            |
+            input#title.form-control(name="newname")
+        |
+        button.btn.btn-primary(type='submit') Change name
+        hr
+    form(id="newEmail", name="newEmail", method="post", action="/admin/profile/changeemail")
+        .form-group
+            label(for='title') Enter new email
+            |
+            input#title.form-control(name="newemail")
+        |
+        button.btn.btn-primary(type='submit') Change email
+        hr
+    form(id="newavatar", name="newavatar", method="post", action="/admin/profile/changeavatar")
+        .form-group
+            label(for='title') New avatar link
+            |
+            input#title.form-control(name="link", value='http://picsum.photos/150/150')
+        |
+        button.btn.btn-primary(type='submit') Edit
+
+block scripts
+    script(type='text/javascript' src='/js/bsValidator.min.js')
+    script(src='/js/tags-validate.js')
