@@ -4,3 +4,4 @@ config/config.json
 .idea
 db.json
 vk.json
+public/uploads
