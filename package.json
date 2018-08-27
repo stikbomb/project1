@@ -34,6 +34,7 @@
     "req-flash": "0.0.3",
     "request": "^2.88.0",
     "sequelize": "^4.37.10",
+    "url": "^0.11.0",
     "xoauth2": "^1.2.0"
   },
   "description": "Первый проект",

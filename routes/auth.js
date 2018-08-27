@@ -5,6 +5,7 @@ var request = require('request');
 var http = require('http');
 var fs = require('fs');
 var moment = require('moment');
+const url = require('url');
 
 let titleEdit;
 
@@ -112,7 +113,7 @@ module.exports = function(app, passport) {
 
     app.get('/', (req, res) => {
 
-        mysqlcon.connection.query("SELECT * FROM `contents` LIMIT 5", async (err, rows) => {
+        mysqlcon.connection.query("SELECT * FROM `contents` ORDER BY createdAt DESC LIMIT 5", async (err, rows) => {
             console.log(typeof rows);
             let tagsArray = [];
             await rows.forEach(async (row) => {
@@ -358,6 +359,16 @@ module.exports = function(app, passport) {
         console.log(usern);
         res.render("./vksucces", {usern});
     });
+
+    app.get('/search', async (req, res) => {
+        let q = url.parse(req.url, true);
+        let char = q.query.char;
+        console.log(char);
+        mysqlcon.connection.query("SELECT * FROM `contents` WHERE content1 LIKE '%" + char + "%'", (err, rows) => {
+            // res.sendStatus(200);
+            res.render('./guest/index', {rows: rows, user: req.user});
+        })
+    })
 
 
 

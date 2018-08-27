@@ -48,10 +48,11 @@ block content
                 .card.my-4
                     h5.card-header Search
                     .card-body
-                        .input-group
-                            input.form-control(type='text', placeholder='Search for...')
-                            span.input-group-btn
-                                button.btn.btn-secondary(type='button') Go!
+                        form(id="search", name="search", method="get", action='/articles/search')
+                            .input-group
+                                input.form-control(name='char', type='text', placeholder='Search for...')
+                                span.input-group-btn
+                                    button.btn.btn-secondary(type='submit') Go!
                 // Categories Widget
                 .card.my-4
                     h5.card-header Categories
