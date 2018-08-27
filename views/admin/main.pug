@@ -1,0 +1,45 @@
+extends layout
+block title
+    title Main page
+block css
+    link(rel='stylesheet' href='/css/bsValidator.min.css')
+
+block content
+    h1.mt-4 Add article
+    hr
+    form(id="admin", name="admin", method="post", action="/admin/article")
+        .form-group
+            label(for='title') Enter title
+            |
+            input#title.form-control(name="title", placeholder='Title')
+        |
+        .form-group
+            label(for='content1') Enter first part of article
+            |
+            textarea#content1.form-control(name="content1", rows="5", placeholder='First part')
+        |
+        .form-group
+            label(for='content2') Enter second part of article
+            |
+            textarea#content2.form-control(name="content2", rows="5", placeholder='Second part')
+        |
+        .form-group
+            label(for='content3') Enter third part of article
+            |
+            textarea#content3.form-control(name="content3", rows="5", placeholder='Third part')
+        |
+        .form-group
+            label(for='image') Enter link to image
+            |
+            input#image.form-control(name="image", value='http://picsum.photos/900/300/?random')
+        |
+        .form-group
+            label(for='tags') Enter tags (Example: "weekend;home;work")
+            |
+            input#tags.form-control(name="tags", placeholder='Tags')
+        |
+        button.btn.btn-primary(type='submit') Submit
+
+block scripts
+    script(type='text/javascript' src='/js/bsValidator.min.js')
+    script(src='/js/tags-validate.js')

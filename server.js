@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var env = require('dotenv').load();
 var exphbs = require('express-handlebars');
 var path = require('path');
+var flash = require('req-flash');
 
 app.use(express.static(path.join(__dirname, 'public')));
 //For BodyParser
@@ -25,6 +26,8 @@ app.listen(3000, function(err) {
     else console.log(err)
 
 });
+
+app.use(flash());
 
 //Models
 var models = require("./models");
@@ -47,6 +50,6 @@ models.sequelize.sync().then(function() {
 });
 
 //For Handlebars
-app.set('views', './views')
+app.set('views', './views');
 app.set('view engine', 'pug');
 

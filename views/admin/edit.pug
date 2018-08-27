@@ -1,36 +1,40 @@
 extends layout
-
 block title
-    title Edit slug
-
-
-
-
-block menu
-    nav(class="navbar navbar-expand-lg navbar-dark bg-dark")
-        a(class="navbar-brand", href="#") Navbar
-        button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#navbar1", aria-controls="navbar1", aria-expanded="false", aria-label="Toggle navigation")
-            span(class="navbar-toggler-icon")
-
-
-        div(class="collapse navbar-collapse", id="navbar1")
-            ul(class="navbar-nav mr-auto")
-                li(class="nav-item")
-                    a(class="nav-link", href="/admin") Главная
-                        span(class="sr-only") (current)
-
-                li(class="nav-item active")
-                    a(class="nav-link", href="/admin/articles") Статьи
-
-                li(class="nav-item")
-                    a(class="nav-link", href="/logout") Выход
-
-
+    title Main page
+block css
+    link(rel='stylesheet' href='/css/bsValidator.min.css')
 
 block content
-    form(id="editContent", name="editContent", method="post", action="editArticle")
+    h1.mt-4 Add article
+    hr
+    form(id="admin", name="admin", method="post", action="/admin/articles/edit/" + oldContent.slug)
         .form-group
-            label(class="sr-only", for="title") Title
-            textarea(class ="form-control", for="exampleFormControlTextarea1", rows='7', name="content", type="text") #{oldContent}
-            br
-            input(class="btn btn-primary mb-2", type="submit", value="Добавить")
+            label(for='title') Enter title
+            |
+            input#title.form-control(name="title", value=oldContent.title)
+        |
+        .form-group
+            label(for='content1') Enter first part of article
+            |
+            textarea#content1.form-control(name="content1", rows="5") #{oldContent.content1}
+        |
+        .form-group
+            label(for='content2') Enter second part of article
+            |
+            textarea#content2.form-control(name="content2", rows="5") #{oldContent.content2}
+        |
+        .form-group
+            label(for='content3') Enter third part of article
+            |
+            textarea#content3.form-control(name="content3", rows="5") #{oldContent.content3}
+        |
+        .form-group
+            label(for='tags') Enter tags (Example: "weekend;home;work")
+            |
+            input#tags.form-control(name="tags", value=tagsString)
+        |
+        button.btn.btn-primary(type='submit') Edit
+
+block scripts
+    script(type='text/javascript' src='/js/bsValidator.min.js')
+    script(src='/js/tags-validate.js')

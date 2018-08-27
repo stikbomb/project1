@@ -197,7 +197,7 @@ module.exports = function(passport,user){
         {
             clientID: vk.VK_APP_ID,
             clientSecret: vk.VK_APP_SECRET,
-            callbackURL:  "http://localhost:3000/auth/vk/callback"
+            callbackURL:  "http://192.168.1.9:3000/auth/vk/callback"
         },
 
         function (accessToken, refreshToken, profile, done) {

@@ -1,0 +1,25 @@
+doctype html
+head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description' content='')
+    meta(name='author' content='')
+    link(rel='icon' href='../../../../favicon.ico')
+    title Signin Template for Bootstrap
+    link(
+    rel="stylesheet",
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css",
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB",
+    crossorigin="anonymous")
+    // Custom styles for this template
+    link(href='/css/signin.css' rel='stylesheet')
+body.text-center
+    form.form-signin(id="signin", name="signin", method="post", action="/signin")
+        img.mb-4(src='https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg' alt='' width='72' height='72')
+        h1.h3.mb-3.font-weight-normal Please sign ip
+        label.sr-only(for='inputEmail')
+        input#inputEmail.form-control(type='email' name='email' placeholder='Email address' required='' autofocus='')
+        label.sr-only(for='inputPassword')
+        input#inputPassword.form-control(type='password' name='password' placeholder='Password' required='')
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+
